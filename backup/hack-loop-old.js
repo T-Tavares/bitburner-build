@@ -1,0 +1,12 @@
+export async function main(ns) {
+    const target = ns.args[0];
+
+    while (true) {
+        await ns.weaken(target);
+        await ns.grow(target);
+        await ns.weaken(target);
+        await ns.hack(target);
+
+        await ns.sleep(200);
+    }
+}

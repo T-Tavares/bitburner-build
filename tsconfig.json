@@ -17,6 +17,9 @@
         "baseUrl": "src/",
         "allowJs": true,
         "jsx": "react",
+
+        "noImplicitAny": true, //           Strong Type Strict Checks
+        "strictNullChecks": true, //        Strong Type Strict Checks
         "paths": {
             "/*": ["*"],
             "@ns": ["../NetscriptDefinitions.d.ts"],
