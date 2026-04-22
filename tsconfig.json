@@ -23,7 +23,10 @@
         "paths": {
             "/*": ["*"],
             "@ns": ["../NetscriptDefinitions.d.ts"],
-            "@react": ["lib/react.ts"]
+            "@react": ["lib/react.ts"],
+
+            "/config": ["config"],
+            "/lib": ["lib"]
         }
     }
 }
