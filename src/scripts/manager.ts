@@ -1,36 +1,18 @@
 import {NS} from '@ns';
-import {openPorts, myPortOpeners} from '/lib/ports';
+import {getServersRootAccess} from '../lib/servers/root-access';
 
-export async function main(ns: NS): Promise<void> {}
+export async function main(ns: NS): Promise<void> {
+    const manager = [
+        {delay: 3000, fn: () => ns.print('scan for better targets')},
+        {delay: 10000, fn: () => ns.print('scan to get root access')},
+    ];
 
-async function getAccess(ns: NS, server: string): Promise<void> {
-    const myPorts: number = myPortOpeners(ns);
-    const myHackingLevel: number = ns.getHackingLevel();
-
-    const neededPorts: number = ns.getServerNumPortsRequired(server);
-    const neededHackingLevel: number = ns.getServerRequiredHackingLevel(server);
-
-    if (myPorts >= neededPorts && myHackingLevel >= neededHackingLevel) {
-        ns.nuke(server);
-        await openPorts(ns, server);
-    }
-}
-
-interface ServerContext {
-    ns: NS;
-    server: string;
-}
-interface ServerAction extends ServerContext {
-    action: ({ns, server}: ServerContext) => void | Promise<void>;
-}
-
-async function recServerScanAction({ns, server, action}: ServerAction): Promise<void> {
-    const hasRoot = ns.hasRootAccess(server);
-
-    action({ns, server});
-
-    const neighbours: string[] = ns.scan(server);
-    for (const s of neighbours) {
-        recServerScanAction({ns, server: s, action});
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+        // await getServersRootAccess(ns);
+        for (const t of manager) {
+            await ns.sleep(t.delay);
+            await t.fn();
+        }
     }
 }

@@ -1,43 +1,13 @@
 import {NS} from '@ns';
 
-export async function main(ns: NS): Promise<void> {
-    await getBestTarget(ns);
-}
-
-// ------------------------------------------------------ //
-// --------------- GET ALL SERVERS ROOTED --------------- //
-// ------------------------------------------------------ //
-
-export async function getAllServersRooted(ns: NS): Promise<string[]> {
-    const visited = new Set<string>();
-    const hasRoot = new Set<string>();
-
-    async function getServersRecursive(server: string): Promise<void> {
-        if (visited.has(server)) return;
-        visited.add(server);
-
-        if (ns.hasRootAccess(server)) hasRoot.add(server);
-        const serverChilds: string[] = ns.scan(server);
-
-        for (const s of serverChilds) {
-            await getServersRecursive(s);
-        }
-    }
-
-    await getServersRecursive('home');
-
-    const hasRootFiltered = [...hasRoot].filter(s => !s.includes('home'));
-    ns.tprint(hasRootFiltered);
-
-    return hasRootFiltered;
-}
-
 // ------------------------------------------------------ //
 // ------------------- GET BEST TARGET ------------------ //
 // ------------------------------------------------------ //
 
 // is server ready ?
 // is server good ?
+
+// ------------------- CALCULATE SCORE ------------------ //
 
 export function calculateScore(ns: NS, server: string): number {
     const maxMoney = ns.getServerMaxMoney(server);
@@ -56,6 +26,8 @@ export function calculateScore(ns: NS, server: string): number {
 
     return score;
 }
+
+// ------------------- GET BEST TARGET ------------------ //
 
 export async function getBestTarget(ns: NS): Promise<string> {
     const serversRootedArr = await getAllServersRooted(ns);
@@ -80,4 +52,30 @@ export async function getBestTarget(ns: NS): Promise<string> {
     ns.tprint(`Growth: ${growth}`);
 
     return bestTarget;
+}
+
+// --------------- GET ALL SERVERS ROOTED --------------- //
+
+export async function getAllServersRooted(ns: NS): Promise<string[]> {
+    const visited = new Set<string>();
+    const hasRoot = new Set<string>();
+
+    async function getServersRecursive(server: string): Promise<void> {
+        if (visited.has(server)) return;
+        visited.add(server);
+
+        if (ns.hasRootAccess(server)) hasRoot.add(server);
+        const serverChilds: string[] = ns.scan(server);
+
+        for (const s of serverChilds) {
+            await getServersRecursive(s);
+        }
+    }
+
+    await getServersRecursive('home');
+
+    const hasRootFiltered = [...hasRoot].filter(s => !s.includes('home'));
+    ns.tprint(hasRootFiltered);
+
+    return hasRootFiltered;
 }

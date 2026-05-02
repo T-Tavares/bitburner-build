@@ -1,32 +1,45 @@
 {
-  "name": "bitburner-typescript-template",
-  "version": "2.0.0",
-  "scripts": {
-    "watch:transpile": "tsc -w --preserveWatchOutput",
-    "watch:local": "node build/watch.js",
-    "watch:remote": "bitburner-filesync",
-    "watch:init": "node build/init.js",
-    "watch:all": "concurrently npm:watch:transpile npm:watch:local npm:watch:remote",
-    "watch": "npm run watch:init && npm run watch:all"
-  },
-  "author": "hydroflame, Hoekstraa, based on work by SlyCedix",
-  "devDependencies": {
-    "@types/date-fns": "^2.5.3",
-    "@types/lodash": "^4.17.24",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
-    "bitburner-filesync": "^1.1.5",
-    "chokidar": "^3.5.3",
-    "concurrently": "^7.4.0",
-    "eslint": "^8.22.0",
-    "fast-glob": "^3.2.12",
-    "sync-directory": "^5.1.7",
-    "typescript": "^6.0.2"
-  },
-  "dependencies": {
-    "date-fns": "^4.1.0",
-    "lodash": "^4.18.1"
-  }
+    "name": "bitburner-typescript-template",
+    "version": "2.0.0",
+    "scripts": {
+        "watch:transpile": "tsc -w --preserveWatchOutput",
+        "watch:local": "node build/watch.js",
+        "watch:remote": "bitburner-filesync",
+        "watch:init": "node build/init.js",
+        "watch:all": "concurrently npm:watch:transpile npm:watch:local npm:watch:remote",
+        "watch": "npm run watch:init && npm run watch:all"
+    },
+    "author": "hydroflame, Hoekstraa, based on work by SlyCedix",
+    "devDependencies": {
+        "@types/date-fns": "^2.5.3",
+        "@types/lodash": "^4.17.24",
+        "@types/react": "^18.3.28",
+        "@types/react-dom": "^18.2.7",
+        "@typescript-eslint/eslint-plugin": "^5.35.1",
+        "@typescript-eslint/parser": "^5.35.1",
+        "bitburner-filesync": "^1.1.5",
+        "chokidar": "^3.5.3",
+        "concurrently": "^7.4.0",
+        "eslint": "^8.22.0",
+        "fast-glob": "^3.2.12",
+        "sync-directory": "^5.1.7",
+        "typescript": "^6.0.2"
+    },
+    "dependencies": {
+        "date-fns": "^4.1.0",
+        "lodash": "^4.18.1"
+    },
+    "description": "The official template for synchronizing Typescript/Javascript from your computer to the game.",
+    "main": "build.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/T-Tavares/bitburner-build.git"
+    },
+    "keywords": [],
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/T-Tavares/bitburner-build/issues"
+    },
+    "homepage": "https://github.com/T-Tavares/bitburner-build#readme"
 }

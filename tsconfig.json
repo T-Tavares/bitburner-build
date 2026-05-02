@@ -23,10 +23,11 @@
         "paths": {
             "/*": ["*"],
             "@ns": ["../NetscriptDefinitions.d.ts"],
-            "@react": ["lib/react.ts"],
-
-            "/config": ["config"],
-            "/lib": ["lib"]
+            "@react": ["lib/react.ts"]
+            // ------------------------------------------------------ //
+            // ---------------- FOR FUTURE REFERENCE ---------------- //
+            // ----- PATH ALIAS DOES NOT GO WELL WITH BITBURNER ----- //
+            // ------------------------------------------------------ //
         }
     }
 }
